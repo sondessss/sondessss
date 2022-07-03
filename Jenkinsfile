@@ -1,5 +1,5 @@
-node{
-agent { node { label 'tools-jks-docker03' } }
+node("tools-jks-cen03"){
+
  def app
   stage ('clone') {
   checkout scm
