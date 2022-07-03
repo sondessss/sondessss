@@ -1,13 +1,11 @@
 node{
+agent { node { label 'tools-jks-docker03' } }
  def app
   stage ('clone') {
   checkout scm
 
   }
- stage ('intialize'){
- def dockerHome = tool'mydocker'
-  env.PATH="${dockerHome}/bin:${env.PATH}"
- }
+ 
  stage ('build image') {
   app = docker.build("sondos/nginx")
   }
