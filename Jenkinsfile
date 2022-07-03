@@ -5,12 +5,13 @@ node{
  
   }
  stage ('build image') {
-  app = docker.build("sondos/nginx")
+  
+  sh 'docker build -t sondos:v1 .'
+     
   }
    stage ('Run image') {
-     docker.image("sondos/nginx").withRun('-p 89:80') { c ->
-       sh 'docker ps'
-       sh 'curl localhost'                                                                              
+    sh 'docker run -p 89:80 -d sondos:v1'
+       sh ' curl -k http://localhost:89'                                                                              
         }
   }
 }
