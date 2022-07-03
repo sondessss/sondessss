@@ -1,15 +1,16 @@
 node{
+ def app
   stage ('clone') {
   checkout scm
- 
+
   }
  stage ('build image') {
-  
-  sh 'docker build -t sondos:v1 .'
-     
+  app = docker.build("sondos/nginx")
   }
    stage ('Run image') {
-    sh 'docker run -p 89:80 -d sondos:v1'
-       sh ' curl -k http://localhost:89'                                                                              
+     docker.image("sondos/nginx").withRun('-p 89:80') { c ->
+       sh 'docker ps'
+       sh 'curl localhost:89'                                                                              
         }
+  }
 }
