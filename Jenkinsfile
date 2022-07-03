@@ -13,5 +13,4 @@ node{
     sh 'docker run -p 89:80 -d sondos:v1'
        sh ' curl -k http://localhost:89'                                                                              
         }
-  }
 }
