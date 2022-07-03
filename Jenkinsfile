@@ -4,6 +4,10 @@ node{
   checkout scm
 
   }
+ stage ('intialize'){
+ def dockerHome = tool'mydocker'
+  env.PATH="${dockerHome}/bin:${env.PATH}"
+ }
  stage ('build image') {
   app = docker.build("sondos/nginx")
   }
